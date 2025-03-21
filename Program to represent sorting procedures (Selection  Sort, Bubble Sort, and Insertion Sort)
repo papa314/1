@@ -1,0 +1,109 @@
+#include <stdio.h> 
+void bubbleSort(int array[], int n) 
+{ 
+    int i, j, temp; 
+    for (i = 0; i < n - 1; i++) 
+    { 
+        for (j = 0; j < n - i - 1; j++) 
+        { 
+            if (array[j] > array[j + 1]) 
+            { 
+                temp = array[j]; 
+                array[j] = array[j + 1]; 
+                array[j + 1] = temp; 
+            } 
+        } 
+    } 
+} 
+  
+void selectionSort(int array[], int n) 
+{ 
+    int i, j, minimumIndex, temp; 
+    for (i = 0; i < n - 1; i++) 
+    { 
+        minimumIndex = i; 
+        for (j = i + 1; j < n; j++) 
+        { 
+            if (array[j] < array[minimumIndex]) 
+            { 
+                minimumIndex = j; 
+            } 
+        } 
+        temp = array[minimumIndex]; 
+        array[minimumIndex] = array[i]; 
+        array[i] = temp; 
+    } 
+} 
+  
+void insertionSort(int array[], int n)  
+{ 
+    int i, key, j; 
+    for (i = 1; i < n; i++) 
+    { 
+        key = array[i]; 
+        j = i - 1; 
+        while (j >= 0 && array[j] > key)  
+        { 
+            array[j + 1] = array[j]; 
+            j = j - 1; 
+        } 
+        array[j + 1] = key; 
+    } 
+} 
+void printArray(int array[], int n) 
+{ 
+    int i; 
+    for (i = 0; i < n; i++) 
+    { 
+        printf("%d ", array[i]); 
+    } 
+    printf("\n"); 
+} 
+  
+int main() { 
+    int n, i;  
+    int choice; 
+  
+    printf("Enter the number of elements: "); 
+    scanf("%d", &n);  
+  
+    int array[n]; 
+  
+    printf("Enter the elements:\n"); 
+    for (i = 0; i < n; i++) 
+    { 
+        scanf("%d", &array[i]); 
+    } 
+  
+    printf("\nUnsorted array: \n"); 
+    printArray(array, n); 
+  
+    printf("\nChoose a sorting algorithm:\n"); 
+    printf("1. Bubble Sort\n"); 
+    printf("2. Selection Sort\n"); 
+    printf("3. Insertion Sort\n"); 
+    printf("Enter your choice: "); 
+    scanf("%d", &choice); 
+ 
+    switch (choice) { 
+        case 1: 
+            bubbleSort(array, n);  
+            printf("\nSorted array (Bubble Sort): \n"); 
+            printArray(array, n); 
+            break; 
+        case 2: 
+            selectionSort(array, n); 
+            printf("\nSorted array (Selection Sort): \n"); 
+            printArray(array, n); 
+            break; 
+        case 3: 
+            insertionSort(array, n); 
+            printf("\nSorted array (Insertion Sort): \n"); 
+            printArray(array, n); 
+            break; 
+        default: 
+            printf("\nInvalid choice.\n"); 
+    } 
+  
+    return 0; 
+} 
