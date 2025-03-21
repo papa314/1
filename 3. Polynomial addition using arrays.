@@ -1,0 +1,32 @@
+#include <stdio.h> 
+void addPolynomials(int poly1[], int poly2[], int result[], int n) 
+{ 
+    for (int i = 0; i < n; i++) { 
+        result[i] = poly1[i] + poly2[i]; 
+    } 
+} 
+  void printPolynomial(int poly[], int n) { 
+    for (int i = 0; i < n; i++) { 
+        printf("%dx^%d", poly[i], i); 
+        if (i != n - 1) { 
+            printf(" + "); 
+        } 
+    } 
+    printf("\n"); 
+} 
+  int main() { 
+    int n = 3;  
+    int poly1[] = {1, 2, 3};  
+    int poly2[] = {3, 4, 5};  
+    int result[n]; 
+  
+    addPolynomials(poly1, poly2, result, n); 
+    printf("Polynomial 1: "); 
+    printPolynomial(poly1, n); 
+    printf("Polynomial 2: "); 
+    printPolynomial(poly2, n); 
+    printf("Sum: "); 
+    printPolynomial(result, n); 
+  
+    return 0; 
+}
