@@ -31,12 +31,9 @@ void binarySearch(int arr[], int n, int key)
         { 
             start = mid + 1; 
         } 
-    } 
-5 
- 
-    printf("Element not found!!!"); 
+    }
+   printf("Element not found!!!"); 
 } 
-  
 int main() 
  { 
     int choice, n, key,i;  
@@ -63,4 +60,5 @@ int main()
         default: 
             printf("Invalid Choice!!!\n"); 
     } 
-    re
+    return 0; 
+}
