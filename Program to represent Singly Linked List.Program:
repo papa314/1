@@ -1,0 +1,115 @@
+#include <stdio.h> 
+#include <stdlib.h> 
+  
+struct node { 
+    int INFO; 
+    struct node *LINK; 
+}; 
+  
+typedef struct node NODE; 
+NODE *start = NULL; 
+  
+void create() { 
+    char ch; 
+    int i = 0; 
+    NODE *CPTR, *NEWNODE; 
+     
+    CPTR = (NODE *)malloc(sizeof(NODE)); 
+    if (CPTR == NULL) { 
+        printf("Memory allocation failed.\n"); 
+        exit(1); 
+    } 
+  
+    start = CPTR; 
+  
+    while (1) { 
+        printf("\nEnter the node %d: ", i + 1); 
+        scanf("%d", &CPTR->INFO); 
+         
+        printf("\nDo you wish to add one more node (Y/N): "); 
+        scanf(" %c", &ch); 
+  
+        if (ch == 'Y' || ch == 'y') { 
+            NEWNODE = (NODE *)malloc(sizeof(NODE)); 
+            if (NEWNODE == NULL) { 
+                printf("Memory allocation failed.\n"); 
+                exit(1); 
+            } 
+            CPTR->LINK = NEWNODE; 
+            CPTR = NEWNODE; 
+ 
+        } else { 
+            CPTR->LINK = NULL; 
+            break; 
+        } 
+        i++; 
+    } 
+} 
+  
+void display() { 
+    NODE *CPTR = start; 
+  
+    if (start == NULL) { 
+        printf("\nLinked list is empty\n"); 
+        return; 
+    } 
+  
+    while (CPTR != NULL) { 
+        printf("%d -> ", CPTR->INFO); 
+        CPTR = CPTR->LINK; 
+    } 
+    printf("NULL\n"); 
+} 
+  
+int length() { 
+    int len = 0; 
+    NODE *CPTR = start; 
+  
+    if (start == NULL) { 
+        printf("The linked list is empty\n"); 
+        return 0; 
+    } 
+  
+    while (CPTR != NULL) { 
+        len++; 
+        CPTR = CPTR->LINK; 
+    } 
+    return len; 
+} 
+  
+void search(int ITEM) { 
+    int i = 0; 
+    NODE *CPTR = start; 
+  
+    while (CPTR != NULL) { 
+        i++; 
+        if (ITEM == CPTR->INFO) { 
+            printf("\nThe item %d is found at position no: %d\n", 
+ITEM, i); 
+            return; 
+        } 
+        CPTR = CPTR->LINK; 
+    } 
+  
+    printf("\nThe item does not exist in the linked list.\n"); 
+} 
+  
+int main() { 
+    int ITEM; 
+  
+    printf("\n\tCreation of linked list\n"); 
+    create(); 
+  
+    printf("\nThe linked list created is:\n"); 
+    display(); 
+  
+    printf("\nThe number of nodes in the linked list is: %d\n", 
+length()); 
+  
+    printf("\nEnter the item to be searched: "); 
+    scanf("%d", &ITEM); 
+    search(ITEM); 
+  
+    return 0; 
+} 
+}
