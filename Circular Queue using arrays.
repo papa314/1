@@ -1,0 +1,86 @@
+#include <stdio.h> 
+#define MAX_SIZE 5 
+int A[MAX_SIZE]; 
+int front = -1; 
+int rear = -1; 
+void Enqueue(int x) 
+{ 
+    if ((rear + 1) % MAX_SIZE == front) 
+    { 
+        printf("Error: Queue is full\n"); 
+        return; 
+    } 
+    else if (front == -1 && rear == -1) 
+    { 
+        front = rear = 0; 
+    } 
+    else 
+    { 
+        rear = (rear + 1) % MAX_SIZE; 
+    } 
+    A[rear] = x; 
+} 
+void Dequeue() 
+{ 
+    if (front == -1 && rear == -1) 
+    { 
+        printf("Error: Queue is empty\n"); 
+        return; 
+    } 
+    else if (front == rear) 
+    { 
+        front = rear = -1; 
+    } 
+    else 
+    { 
+        front = (front + 1) % MAX_SIZE; 
+    } 
+} 
+int Front() 
+{ 
+    if (front == -1 && rear == -1) 
+    { 
+        printf("Error: Queue is empty\n"); 
+        return -1; 
+    } 
+    return A[front]; 
+} 
+void Print() 
+{ 
+    int i = front; 
+    if (front == -1 && rear == -1) 
+    { 
+        printf("Queue is empty\n"); 
+        return; 
+    } 
+    printf("Queue: "); 
+    while (i != rear) 
+    { 
+        printf("%d ", A[i]); 
+        i = (i + 1) % MAX_SIZE; 
+    } 
+    printf("%d\n", A[rear]); 
+} 
+int IsEmpty() 
+{ 
+    if (front == -1 && rear == -1) 
+        return 1; 
+    else 
+        return 0; 
+} 
+int main() 
+{ 
+    Enqueue(2); 
+    Print(); 
+    Enqueue(5); 
+    Print(); 
+    Enqueue(10); 
+    Print(); 
+    Dequeue(); 
+    Print(); 
+    Enqueue(12); 
+    Print(); 
+    Enqueue(15); 
+    Print(); 
+    return 0; 
+} 
